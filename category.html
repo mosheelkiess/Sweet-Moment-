@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/category-style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <title>Sweet Moment - קטגוריית מוצרים</title>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/images/logo2.jpg" class="logo" alt="Sweet Moment Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">בית</a></li>
+                <li><a href="/cakes.html">העוגות שלנו</a></li>
+                <li><a href="/workshops.html">הסדנאות שלנו</a></li>
+                <li><a href="/base.html">צור קשר</a></li>
+                <li><a href="/A_little_about_us.html">הסיפור שלנו</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <a href="/cakes.html" class="back-button"> חזרה לדף העוגות שלנו </a>
+        <section class="category-section">
+            <h1 id="category-title">טוען קטגוריה...</h1>
+            <div class="cake-grid" id="category-items">
+                <!-- התוכן יוכנס דינמית -->
+            </div>
+        </section>
+    </main>
+
+    <!-- גלריית תמונות -->
+    <div id="imageGallery" class="gallery">
+        <span class="gallery-close" onclick="closeGallery()">&times;</span>
+        <img id="galleryImage" src="" alt="תמונה מוגדלת">
+        <div class="gallery-nav">
+            <button class="gallery-prev" onclick="changeImage(-1)">&#10094;</button>
+            <button class="gallery-next" onclick="changeImage(1)">&#10095;</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Sweet Moment | פיתוח: משה אלקייס | טל: 058-669-9030</p>
+    </footer>
+
+    <script>
+        const categoryData = {
+            'macarons': {
+                title: 'מקרונים',
+                items: [
+                    {
+                        image: 'images/aaaa.jpg',
+                        title: 'מקרונים מארז ממותג אישית',
+                        description: ' מארז מקרונים בטעמים מגוונים עם הקדשה אישית'
+                    },
+                    {
+                        image: 'images/IMG-20241217-WA0077.jpg',
+                        title: 'מגדל מקרונים',
+                        description: 'מגדל מקרונים מעוצב לאירועים'
+                    }
+                ]
+            }
+        };
+
+        let currentImageIndex = 0;
+        let currentCategory = [];
+
+        function displayCategory() {
+            const selectedCategory = localStorage.getItem('selectedCategory');
+            const category = categoryData[selectedCategory];
+
+            if (!category) {
+                window.location.href = '/';
+                return;
+            }
+
+            currentCategory = category.items;
+            document.getElementById('category-title').textContent = category.title;
+            const container = document.getElementById('category-items');
+            
+            container.innerHTML = category.items.map((item, index) => `
+                <div class="cake-card" onclick="openGallery(${index})">
+                    <div class="cake-image-container">
+                        <img src="${item.image}" alt="${item.title}">
+                    </div>
+                    <div class="cake-content">
+                        <div class="cake-card-title">${item.title}</div>
+                        <div class="cake-card-details">
+                            <p>${item.description}</p>
+                        </div>
+                    </div>  
+                </div>
+            `).join('');
+        }
+
+        function openGallery(index) {
+            currentImageIndex = index;
+            const gallery = document.getElementById('imageGallery');
+            const galleryImage = document.getElementById('galleryImage');
+            document.body.style.overflow = 'hidden'; // Disable scrolling
+            gallery.style.display = 'flex';
+            galleryImage.src = currentCategory[currentImageIndex].image;
+        }
+
+        function closeGallery() {
+            const gallery = document.getElementById('imageGallery');
+            document.body.style.overflow = 'auto'; // Enable scrolling
+            gallery.style.display = 'none';
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = currentCategory.length - 1;
+            } else if (currentImageIndex >= currentCategory.length) {
+                currentImageIndex = 0;
+            }
+            const galleryImage = document.getElementById('galleryImage');
+            galleryImage.src = currentCategory[currentImageIndex].image;
+        }
+
+        window.addEventListener('load', displayCategory);
+    </script>
+
+    <script src="/search bar.js"></script>
+</body>
+</html>

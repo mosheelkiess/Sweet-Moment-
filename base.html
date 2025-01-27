@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+    <header>
+        
+        <div class="logo-container">
+            <img src="/images/logo2.jpg" class="logo" alt="Sweet Moment Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">בית</a></li>
+                <li><a href="/cakes.html">העוגות שלנו</a></li>
+                <li><a href="/workshops.html">הסדנאות שלנו</a></li>
+                <li><a href="/base.html">צור קשר</a></li>
+                <li><a href="/A_little_about_us.html">הסיפור שלנו</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+            <section class="contact-section">
+                <h1>צור קשר</h1>
+                <form action="/contact" method="POST" class="contact-form">
+                    <label for="name">שם:</label>
+                    <input type="text" id="name" name="name" placeholder="הכנס את שמך" required>
+                    
+                    <label for="email">אימייל:</label>
+                    <input type="email" id="email" name="email" placeholder="הכנס את כתובת האימייל" required>
+
+                    <label for="phone">טלפון:</label>
+                <input type="tel" id="phone" name="phone" placeholder="הכנס את מספר הטלפון" pattern="[0-9]{10}" required>
+                
+                    
+                    <label for="message">הודעה:</label>
+                    <textarea id="message" name="message" placeholder="כתוב את ההודעה שלך כאן..." required></textarea>
+                    
+                    <button type="submit">שלח</button>
+
+
+                    <a href="https://wa.me/972586699030?text=שלום%20הגעתי%20מהאתר%20שלכם%20אשמח%20להמשיך%20לברר%20על%20העוגות%20שלכם%20%F0%9F%98%8A" 
+                    target="_blank" 
+                    style="padding: 10px 20px; background-color: #25d366; color: white; text-decoration: none; border-radius: 5px;">
+                    שלח הודעה לבית העסק - WhatsApp
+                 </a>
+                 
+                 
+
+         
+            
+      
+                </section>
+    </main>
+   
+    <div class="social-icons">
+        <a href="https://facebook.com" class="facebook" target="_blank">
+            <i class="fab fa-facebook-f"></i> <!-- אייקון פייסבוק -->
+        </a>
+        <a href="https://twitter.com" class="twitter" target="_blank">
+            <i class="fab fa-twitter"></i> <!-- אייקון טוויטר -->
+        </a>
+        <a href="https://instagram.com" class="instagram" target="_blank">
+            <i class="fab fa-instagram"></i> <!-- אייקון אינסטגרם -->
+        </a>
+    
+        </a>
+        <a href="https://wa.me/972586699030?text=שלום,%20אני%20מעוניין%20לצפות%20בסטטוס!" class="whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> <!-- אייקון וואטסאפ -->
+        </a>
+    </div>
+    <footer>
+        <p>&copy; 2025 Sweet Moment | פיתוח: משה אלקייס | טל: 058-669-9030</p>
+    </footer>
+    
+    <script src="static/script.js"></script>
+</body>
+</html>

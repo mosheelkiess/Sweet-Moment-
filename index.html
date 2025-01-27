@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <title>Sweet Moment - קונדיטוריה</title>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/images/logo2.jpg" class="logo" alt="Sweet Moment Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">בית</a></li>
+                <li><a href="/cakes.html">העוגות שלנו</a></li>
+                <li><a href="/workshops.html">הסדנאות שלנו</a></li>
+                <li><a href="/base.html">צור קשר</a></li>
+                <li><a href="/A_little_about_us.html">הסיפור שלנו</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="image-container"></div>
+            <div class="content-container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Sweet Moment</h1>
+                        <p>עוגות מעוצבות | מארזים מיוחדים | קייטרינג | סדנאות אפייה</p>
+                    </div>
+                    <a href="/cakes.html" class="btn">לגלריית העוגות</a>
+                    <a href="/cakes.html" >
+                        <div class="arrow"></div> <!-- הוספת חץ -->
+                    </a>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <section class="testimonials">
+        <h2>חוות דעת לקוחות</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>"הזמנו לבר מצווה והכל היה פשוט מושלם. הטעם, היחס והמחיר - נמליץ תמיד!"</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"העוגה ליום ההולדת של בעלי הייתה מדהימה. טעם יוצא דופן ועיצוב מרהיב!"</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"הקייטרינג לשבע ברכות היה להיט! כולם התלהבו מהטעם והמראה המושקע."</p>
+            </div>
+        </div>
+    </section>
+    <div class="social-icons">
+        <a href="https://facebook.com" class="facebook" target="_blank">
+            <i class="fab fa-facebook-f"></i> <!-- אייקון פייסבוק -->
+        </a>
+        <a href="https://twitter.com" class="twitter" target="_blank">
+            <i class="fab fa-twitter"></i> <!-- אייקון טוויטר -->
+        </a>
+        <a href="https://instagram.com" class="instagram" target="_blank">
+            <i class="fab fa-instagram"></i> <!-- אייקון אינסטגרם -->
+        </a>
+    
+        </a>
+        <a href="https://wa.me/972546818777?text=שלום,%20אני%20מעוניין%20לצפות%20בסטטוס!" class="whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> <!-- אייקון וואטסאפ -->
+        </a>
+        
+        
+        
+    </div>
+    
+    
+    <footer>
+        <p>&copy; 2025 Sweet Moment | פיתוח: משה אלקייס | טל: 058-669-9030</p>
+    </footer>
+    
+    <script>
+   const images = [
+    '/images/abc.jpg', 
+    '/images/aaaa.jpg', 
+  
+];
+
+
+let currentIndex = 0;
+const heroImageElement = document.querySelector('.image-container');
+
+if (heroImageElement) {
+    const updateHeroImage = () => {
+        heroImageElement.style.backgroundImage = `url(${images[currentIndex]})`;
+
+
+        currentIndex = (currentIndex + 1) % images.length;
+    };
+
+    setInterval(updateHeroImage, 3000);
+    updateHeroImage();
+} else {
+    console.error('Element .image-container not found in the DOM');
+}
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <title>עוגות - Cake Shop</title>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/images/logo2.jpg" class="logo" alt="Sweet Moment Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">בית</a></li>
+                <li><a href="/cakes.html">העוגות שלנו</a></li>
+                <li><a href="/workshops.html">הסדנאות שלנו</a></li>
+                <li><a href="/base.html">צור קשר</a></li>
+                <li><a href="/A_little_about_us.html">הסיפור שלנו</a></li>
+            </ul>
+            <form id="search-form">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="חפש עוגה...">
+                    <button type="button" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>ברוכים הבאים לחנות העוגות שלנו</h1>
+                    <p>בחרו את העוגה המושלמת לכל אירוע</p>
+                </div>
+            </div>
+        </section>
+        <section class="cakesSection">
+            <h2>העוגות שלנו</h2>
+            <div class="cakeGrid">
+                <!-- מקרונים -->
+                <a href="category.html" data-category="macarons">
+                    <div>
+                        <img src="images/IMG-20241217-WA0077.jpg" alt="מקרונים">
+                        <div class="title">מקרונים מארז/מגדל</div>
+                        <div class="details">
+                            <p>פרטים נוספים על המקרונים שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- בנטו קאפקייס -->
+                <a href="category.html" data-category="bento-cupcakes">
+                    <div>
+                        <img src="images/Bento and cupcakes.jpg" alt="בנטו קאפקייס">
+                        <div class="title">מארז בנטו קאפקייס</div>
+                        <div class="details">
+                            <p>פרטים נוספים על מארזי הבנטו שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- עוגות בנטו -->
+                <a href="category.html" data-category="bento">
+                    <div>
+                        <img src="images/bento.jpg" alt="עוגות בנטו">
+                        <div class="title">עוגות בנטו</div>
+                        <div class="details">
+                            <p>פרטים נוספים על עוגות הבנטו שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- עוגה מלבנית בר מצווה -->
+                <a href="category.html" data-category="bar-mitzvah">
+                    <div>
+                        <img src="images/bar mitzvah.jpg" alt="עוגת בר מצווה">
+                        <div class="title">עוגה מלבנית בר מצווה</div>
+                        <div class="details">
+                            <p>פרטים נוספים על עוגת בר מצווה מלבנית שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- מגשי פירות -->
+                <a href="category.html" data-category="fruit-trays">
+                    <div>
+                        <img src="images/Fruit trays 2.jpg" alt="מגשי פירות">
+                        <div class="title">מגשי פירות</div>
+                        <div class="details">
+                            <p>פרטים נוספים על מגשי הפירות שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- עוגות מלבניות מבוגרים -->
+                <a href="category.html" data-category="adult-rectangular">
+                    <div>
+                        <img src="images/Adult kindergarten cake.JPG" alt="עוגות מלבניות מבוגרים">
+                        <div class="title">עוגות מלבניות (מבוגרים)</div>
+                        <div class="details">
+                            <p>פרטים נוספים על עוגות המלבניות שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- עוגות גן בנים -->
+                <a href="category.html" data-category="boys-kindergarten">
+                    <div>
+                        <img src="images/Kindergarten cake for boys.jpg" alt="עוגות גן בנים">
+                        <div class="title">עוגות גן גדולות (בנים)</div>
+                        <div class="details">
+                            <p>פרטים נוספים על עוגות הגן הגדולות שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- עוגות מסיבת סידור/חומש -->
+                <a href="category.html" data-category="arrangement-party">
+                    <div>
+                        <img src="images/Arrangement party.jpg" alt="עוגות מסיבת סידור">
+                        <div class="title">עוגות מלבניות מסיבת סידור/חומש</div>
+                        <div class="details">
+                            <p>פרטים נוספים על עוגות מסיבת סידור/חומש שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- קאפקייס -->
+                <a href="category.html" data-category="cupcakes">
+                    <div>
+                        <img src="images/A case of cupcakes.jpg" alt="קאפקייס">
+                        <div class="title">קאפקייס ממותג/מעוצב</div>
+                        <div class="details">
+                            <p>פרטים נוספים על הקאפקייס שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- עוגות גן בנות -->
+                <a href="category.html" data-category="girls-kindergarten">
+                    <div>
+                        <img src="images/Kindergarten cakes for girls.jpg" alt="עוגות גן בנות">
+                        <div class="title">עוגות גן גדולות בינוני</div>
+                        <div class="details">
+                            <p>פרטים נוספים על עוגות גן בינוני שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- קייטרינג -->
+                <a href="category.html" data-category="catering">
+                    <div>
+                        <img src="images/aa.jpg" alt="קייטרינג">
+                        <div class="title">קייטרינג חלבי בוטיק</div>
+                        <div class="details">
+                            <p>פרטים נוספים על הקייטרינג חלבי שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- עוגות מוס -->
+                <a href="category.html" data-category="mousse">
+                    <div>
+                        <img src="images/bb.jpg" alt="עוגות מוס">
+                        <div class="title">עוגות מוס גדולות</div>
+                        <div class="details">
+                            <p>פרטים נוספים על עוגות מוסים הגדולות שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- עיצובי פירות -->
+                <a href="category.html" data-category="fruit-designs">
+                    <div>
+                        <img src="images/Fruit designs1.jpg.JPG" alt="עיצובי פירות">
+                        <div class="title">עיצובי פירות</div>
+                        <div class="details">
+                            <p>פרטים נוספים על העצובי פירות שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- מארזים מתוקים -->
+                <a href="category.html" data-category="sweet-boxes">
+                    <div>
+                        <img src="images/cc.jpg" alt="מארזים מתוקים">
+                        <div class="title">מארזים מתוקים</div>
+                        <div class="details">
+                            <p>פרטים נוספים על המארזים המתוקים שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- סושי -->
+                <a href="category.html" data-category="sushi">
+                    <div>
+                        <img src="images/Sushi.jpg.jpg" alt="סושי">
+                        <div class="title">סושי פירות/שוקולד</div>
+                        <div class="details">
+                            <p>פרטים נוספים על הסושי שלנו</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- פרלינים -->
+                <a href="category.html" data-category="pralines">
+                    <div>
+                        <img src="images/Kindergarten cakes for boys.jpg" alt="פרלינים">
+                        <div class="title">פרלינים</div>
+                        <div class="details">
+                            <p>פרטים נוספים על הפרלינים שלנו</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <div class="social-icons">
+        <a href="https://facebook.com" class="facebook" target="_blank">
+            <i class="fab fa-facebook-f"></i> <!-- אייקון פייסבוק -->
+        </a>
+        <a href="https://twitter.com" class="twitter" target="_blank">
+            <i class="fab fa-twitter"></i> <!-- אייקון טוויטר -->
+        </a>
+        <a href="https://instagram.com" class="instagram" target="_blank">
+            <i class="fab fa-instagram"></i> <!-- אייקון אינסטגרם -->
+        </a>
+        <a href="https://wa.me/972546818777?text=שלום,%20אני%20מעוניין%20לצפות%20בסטטוס!" class="whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> <!-- אייקון וואטסאפ -->
+        </a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Sweet Moment | פיתוח: משה אלקייס | טל: 058-669-9030</p>
+    </footer>
+
+    <script src="search bar.js"></script>
+    <script>
+        document.querySelectorAll('.cakeGrid a').forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.dataset.category;
+                localStorage.setItem('selectedCategory', category);
+                window.location.href = 'category.html';
+            });
+        });
+    </script>
+</body>
+</html>
