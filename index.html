@@ -41,21 +41,27 @@
             </div>
         </section>
     </main>
-    
-    <section class="testimonials">
-        <h2>חוות דעת לקוחות</h2>
-        <div class="testimonial-grid">
-            <div class="testimonial-card">
-                <p>"הזמנו לבר מצווה והכל היה פשוט מושלם. הטעם, היחס והמחיר - נמליץ תמיד!"</p>
-            </div>
-            <div class="testimonial-card">
-                <p>"העוגה ליום ההולדת של בעלי הייתה מדהימה. טעם יוצא דופן ועיצוב מרהיב!"</p>
-            </div>
-            <div class="testimonial-card">
-                <p>"הקייטרינג לשבע ברכות היה להיט! כולם התלהבו מהטעם והמראה המושקע."</p>
+<section class="testimonials">
+    <h2>חוות דעת לקוחות</h2>
+    <div class="testimonial-container">
+        <button class="nav-btn prev-btn">&lt;</button>
+        <div class="testimonial-track">
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"הזמנו לבר מצווה והכל היה פשוט מושלם. הטעם, היחס והמחיר - נמליץ תמיד!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"העוגה ליום ההולדת של בעלי הייתה מדהימה. טעם יוצא דופן ועיצוב מרהיב!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"הקייטרינג לשבע ברכות היה להיט! כולם התלהבו מהטעם והמראה המושקע."</p>
+                </div>
+              
             </div>
         </div>
-    </section>
+        <button class="nav-btn next-btn">&gt;</button>
+    </div>
+</section>
     <div class="social-icons">
         <a href="https://facebook.com" class="facebook" target="_blank">
             <i class="fab fa-facebook-f"></i> <!-- אייקון פייסבוק -->
@@ -105,6 +111,42 @@ if (heroImageElement) {
 } else {
     console.error('Element .image-container not found in the DOM');
 }
+
+
+
+//המצות תזוזוה
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.testimonial-grid');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    const scrollStep = 320; // רוחב הכרטיס + רווח
+
+    nextBtn.addEventListener('click', () => {
+        container.scrollBy({
+            left: scrollStep,
+            behavior: 'smooth'
+        });
+    });
+
+    prevBtn.addEventListener('click', () => {
+        container.scrollBy({
+            left: -scrollStep,
+            behavior: 'smooth'
+        });
+    });
+
+    const checkScrollPosition = () => {
+        const isAtStart = container.scrollLeft <= 0;
+        const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth;
+        
+        prevBtn.disabled = isAtStart;
+        nextBtn.disabled = isAtEnd;
+    };
+
+    container.addEventListener('scroll', checkScrollPosition);
+    checkScrollPosition();
+});
     </script>
     
 </body>

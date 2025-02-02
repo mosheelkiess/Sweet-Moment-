@@ -23,7 +23,7 @@
             <form id="search-form">
                 <div class="search-container">
                     <input type="text" id="search-input" placeholder="חפש עוגה...">
-                    <button type="button" onclick="toggleSearch()">
+                    <button type="button" class="search-button" onclick="toggleSearch()">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -35,12 +35,13 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>ברוכים הבאים לחנות העוגות שלנו</h1>
-                    <p>בחרו את העוגה המושלמת לכל אירוע</p>
+                    <p class="animated-text1">בחרו את העוגה המושלמת לכל אירוע</p>
+               
                 </div>
             </div>
         </section>
         <section class="cakesSection">
-            <h2>העוגות שלנו</h2>
+<h2 class="title-fancy">העוגות שלנו</h2>
             <div class="cakeGrid">
                 <!-- מקרונים -->
                 <a href="category.html" data-category="macarons">
@@ -54,7 +55,7 @@
                 </a>
 
                 <!-- בנטו קאפקייס -->
-                <a href="category.html" data-category="bento-cupcakes">
+                <a href="category.html" data-category="bento">
                     <div>
                         <img src="images/Bento and cupcakes.jpg" alt="בנטו קאפקייס">
                         <div class="title">מארז בנטו קאפקייס</div>
@@ -240,16 +241,8 @@
         <p>&copy; 2025 Sweet Moment | פיתוח: משה אלקייס | טל: 058-669-9030</p>
     </footer>
 
-    <script src="search bar.js"></script>
-    <script>
-        document.querySelectorAll('.cakeGrid a').forEach(card => {
-            card.addEventListener('click', function(e) {
-                e.preventDefault();
-                const category = this.dataset.category;
-                localStorage.setItem('selectedCategory', category);
-                window.location.href = 'category.html';
-            });
-        });
-    </script>
+    <script src="/js/search bar.js bar.js"></script> 
+    
+
 </body>
 </html>

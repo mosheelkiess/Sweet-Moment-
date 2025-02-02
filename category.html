@@ -25,7 +25,8 @@
     </header>
 
     <main class="main-content">
-        <a href="/cakes.html" class="back-button"> חזרה לדף העוגות שלנו </a>
+        <!-- שינוי בכפתור החזרה - הוספת onclick -->
+        <a href="javascript:void(0)" onclick="goBack()" class="back-button">חזרה לדף העוגות שלנו</a>
         <section class="category-section">
             <h1 id="category-title">טוען קטגוריה...</h1>
             <div class="cake-grid" id="category-items">
@@ -33,22 +34,13 @@
             </div>
         </section>
     </main>
-
-    <!-- גלריית תמונות -->
-    <div id="imageGallery" class="gallery">
-        <span class="gallery-close" onclick="closeGallery()">&times;</span>
-        <img id="galleryImage" src="" alt="תמונה מוגדלת">
-        <div class="gallery-nav">
-            <button class="gallery-prev" onclick="changeImage(-1)">&#10094;</button>
-            <button class="gallery-next" onclick="changeImage(1)">&#10095;</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Sweet Moment | פיתוח: משה אלקייס | טל: 058-669-9030</p>
-    </footer>
-
+    
     <script>
+        // הוספת פונקציית החזרה
+        function goBack() {
+            window.location.href = '/cakes.html';
+        }
+    
         const categoryData = {
             'macarons': {
                 title: 'מקרונים',
@@ -64,29 +56,42 @@
                         description: 'מגדל מקרונים מעוצב לאירועים'
                     }
                 ]
+            },
+            'bento': {
+                title: 'בנטו',
+                items: [
+                    {
+                        image: 'images/bento.jpg',
+                        title: 'עוגת בנטו אישית',
+                        description: 'עוגת בנטו מעוצבת אישית לפי בחירה'
+                    },
+
+                    {
+                        image: 'images/Bento and cupcakes.jpg',
+                        title: 'מארז בנטו',
+                        description: 'מארז בנטו בהתאמה אישית'
+                    },
+                   
+                ]
             }
         };
-
-        let currentImageIndex = 0;
-        let currentCategory = [];
-
+    
         function displayCategory() {
             const selectedCategory = localStorage.getItem('selectedCategory');
             const category = categoryData[selectedCategory];
-
+    
             if (!category) {
                 window.location.href = '/';
                 return;
             }
-
-            currentCategory = category.items;
+    
             document.getElementById('category-title').textContent = category.title;
             const container = document.getElementById('category-items');
             
-            container.innerHTML = category.items.map((item, index) => `
-                <div class="cake-card" onclick="openGallery(${index})">
+            container.innerHTML = category.items.map((item) => `
+                <div class="cake-card">
                     <div class="cake-image-container">
-                        <img src="${item.image}" alt="${item.title}">
+                        <img src="${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
                     </div>
                     <div class="cake-content">
                         <div class="cake-card-title">${item.title}</div>
@@ -97,36 +102,46 @@
                 </div>
             `).join('');
         }
-
-        function openGallery(index) {
-            currentImageIndex = index;
-            const gallery = document.getElementById('imageGallery');
-            const galleryImage = document.getElementById('galleryImage');
-            document.body.style.overflow = 'hidden'; // Disable scrolling
-            gallery.style.display = 'flex';
-            galleryImage.src = currentCategory[currentImageIndex].image;
+    
+        function openImage(imageSrc) {
+            window.open(imageSrc, '_blank');
         }
-
-        function closeGallery() {
-            const gallery = document.getElementById('imageGallery');
-            document.body.style.overflow = 'auto'; // Enable scrolling
-            gallery.style.display = 'none';
-        }
-
-        function changeImage(direction) {
-            currentImageIndex += direction;
-            if (currentImageIndex < 0) {
-                currentImageIndex = currentCategory.length - 1;
-            } else if (currentImageIndex >= currentCategory.length) {
-                currentImageIndex = 0;
-            }
-            const galleryImage = document.getElementById('galleryImage');
-            galleryImage.src = currentCategory[currentImageIndex].image;
-        }
-
+    
         window.addEventListener('load', displayCategory);
-    </script>
+        function displayCategory() {
+    const selectedCategory = localStorage.getItem('selectedCategory');
+    const category = categoryData[selectedCategory];
 
-    <script src="/search bar.js"></script>
-</body>
-</html>
+    if (!category) {
+        window.location.href = '/';
+        return;
+    }
+
+    document.getElementById('category-title').textContent = category.title;
+    const container = document.getElementById('category-items');
+    
+    container.innerHTML = category.items.map((item) => `
+        <div class="cake-card">
+            <div class="cake-image-container">
+                <img src="${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
+            </div>
+            <div class="cake-content">
+                <div class="cake-card-title">${item.title}</div>
+                <div class="cake-card-details">
+                    <p>${item.description}</p>
+                </div>
+                <a href="https://wa.me/?text=${encodeURIComponent(`${item.title}%0A%0A${item.description}%0A%0A${window.location.origin}${item.image}`)}" 
+                   target="_blank" 
+                   class="whatsapp-link">
+                    <i class="fab fa-whatsapp"></i> שתף בוואטסאפ
+                </a>
+            </div>  
+        </div>
+    `).join('');
+}
+    </script>
+    
+    <script src="/js/search bar.js bar.js"></script>
+    </body>
+    </html>
+   
