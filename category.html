@@ -15,7 +15,7 @@
         </div>
         <nav>
             <ul>
-                 <li><a href="index.html">בית</a></li>
+                <li><a href="index.html">בית</a></li>
                 <li><a href="cakes.html">העוגות שלנו</a></li>
                 <li><a href="workshops.html">הסדנאות שלנו</a></li>
                 <li><a href="base.html">צור קשר</a></li>
@@ -25,22 +25,20 @@
     </header>
 
     <main class="main-content">
-        <!-- שינוי בכפתור החזרה - הוספת onclick -->
         <a href="javascript:void(0)" onclick="goBack()" class="back-button">חזרה לדף העוגות שלנו</a>
         <section class="category-section">
             <h1 id="category-title">טוען קטגוריה...</h1>
             <div class="cake-grid" id="category-items">
-                <!-- התוכן יוכנס דינמית -->
+                <!-- התוכן ייטען דינאמית -->
             </div>
         </section>
     </main>
     
     <script>
-        // הוספת פונקציית החזרה
         function goBack() {
             window.location.href = 'cakes.html';
         }
-    
+
         const categoryData = {
             'macarons': {
                 title: 'מקרונים',
@@ -48,7 +46,7 @@
                     {
                         image: 'images/aaaa.jpg',
                         title: 'מקרונים מארז ממותג אישית',
-                        description: ' מארז מקרונים בטעמים מגוונים עם הקדשה אישית'
+                        description: 'מארז מקרונים בטעמים מגוונים עם הקדשה אישית'
                     },
                     {
                         image: 'images/IMG-20241217-WA0077.jpg',
@@ -65,30 +63,30 @@
                         title: 'עוגת בנטו אישית',
                         description: 'עוגת בנטו מעוצבת אישית לפי בחירה'
                     },
-
                     {
                         image: 'images/Bento and cupcakes.jpg',
                         title: 'מארז בנטו',
                         description: 'מארז בנטו בהתאמה אישית'
-                    },
-                   
+                    }
                 ]
             }
         };
-    
+
         function displayCategory() {
             const selectedCategory = localStorage.getItem('selectedCategory');
-            const category = categoryData[selectedCategory];
-    
-            if (!category) {
-                window.location.href = '/';
+            console.log("קטגוריה נבחרה:", selectedCategory); // בדיקה בקונסולה
+
+            if (!selectedCategory || !categoryData[selectedCategory]) {
+                console.error("קטגוריה לא נמצאה. מעבר לדף הבית.");
+                window.location.href = 'index.html';
                 return;
             }
-    
+
+            const category = categoryData[selectedCategory];
             document.getElementById('category-title').textContent = category.title;
+
             const container = document.getElementById('category-items');
-            
-            container.innerHTML = category.items.map((item) => `
+            container.innerHTML = category.items.map(item => `
                 <div class="cake-card">
                     <div class="cake-image-container">
                         <img src="${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
@@ -98,50 +96,22 @@
                         <div class="cake-card-details">
                             <p>${item.description}</p>
                         </div>
+                        <a href="https://wa.me/?text=${encodeURIComponent(`${item.title}%0A%0A${item.description}%0A%0A${window.location.origin}/${item.image}`)}" 
+                           target="_blank" 
+                           class="whatsapp-link">
+                            <i class="fab fa-whatsapp"></i> שתף בוואטסאפ
+                        </a>
                     </div>  
                 </div>
             `).join('');
         }
-    
+
         function openImage(imageSrc) {
             window.open(imageSrc, '_blank');
         }
-    
+
         window.addEventListener('load', displayCategory);
-        function displayCategory() {
-    const selectedCategory = localStorage.getItem('selectedCategory');
-    const category = categoryData[selectedCategory];
-
-    if (!category) {
-        window.location.href = '/';
-        return;
-    }
-
-    document.getElementById('category-title').textContent = category.title;
-    const container = document.getElementById('category-items');
-    
-    container.innerHTML = category.items.map((item) => `
-        <div class="cake-card">
-            <div class="cake-image-container">
-                <img src="${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
-            </div>
-            <div class="cake-content">
-                <div class="cake-card-title">${item.title}</div>
-                <div class="cake-card-details">
-                    <p>${item.description}</p>
-                </div>
-                <a href="https://wa.me/?text=${encodeURIComponent(`${item.title}%0A%0A${item.description}%0A%0A${window.location.origin}${item.image}`)}" 
-                   target="_blank" 
-                   class="whatsapp-link">
-                    <i class="fab fa-whatsapp"></i> שתף בוואטסאפ
-                </a>
-            </div>  
-        </div>
-    `).join('');
-}
     </script>
-    
-    <script src="search bar"></script>
-    </body>
-    </html>
-   
+
+</body>
+</html>
