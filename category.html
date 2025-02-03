@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/category-style.css">
+    <link rel="stylesheet" href="/Sweet-Moment-/styles/style.css">
+    <link rel="stylesheet" href="/Sweet-Moment-/styles/category-style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <title>Sweet Moment - קטגוריית מוצרים</title>
     <style>
@@ -67,7 +67,6 @@
             cursor: pointer;
         }
 
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -106,21 +105,20 @@
 </head>
 <body>
     <header>
-       <div class="logo-container">
-    <img src="images/logo2.jpg" class="logo" alt="Sweet Moment Logo">
-</div>
+        <div class="logo-container">
+            <img src="/Sweet-Moment-/images/logo2.jpg" class="logo" alt="Sweet Moment Logo">
+        </div>
         <nav>
             <ul>
-                <li><a href="index.html">בית</a></li>
-                <li><a href="cakes.html">העוגות שלנו</a></li>
-                <li><a href="workshops.html">הסדנאות שלנו</a></li>
-                <li><a href="base.html">צור קשר</a></li>
-                <li><a href="A_little_about_us.html">הסיפור שלנו</a></li>
+                <li><a href="/Sweet-Moment-/index.html">בית</a></li>
+                <li><a href="/Sweet-Moment-/cakes.html">העוגות שלנו</a></li>
+                <li><a href="/Sweet-Moment-/workshops.html">הסדנאות שלנו</a></li>
+                <li><a href="/Sweet-Moment-/base.html">צור קשר</a></li>
+                <li><a href="/Sweet-Moment-/A_little_about_us.html">הסיפור שלנו</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Modal -->
     <div id="imageModal" class="modal">
         <span class="close-button">&times;</span>
         <img id="modalImage" class="modal-content">
@@ -137,132 +135,114 @@
     </main>
     
     <script>
-        function goBack() {
-            window.location.href = '/cakes.html';
-        }
-const categoryData = {
-    'macarons': {
-        title: 'מקרונים',
-        items: [
-            {
-                image: '/Sweet-Moment-/images/aaaa.jpg', // נתיב מלא
-                title: 'מקרונים מארז ממותג אישית',
-                description: 'מארז מקרונים בטעמים מגוונים עם הקדשה אישית'
+        const categoryData = {
+            'macarons': {
+                title: 'מקרונים',
+                items: [
+                    {
+                        image: '/Sweet-Moment-/images/aaaa.jpg',
+                        title: 'מקרונים מארז ממותג אישית',
+                        description: 'מארז מקרונים בטעמים מגוונים עם הקדשה אישית'
+                    },
+                    {
+                        image: '/Sweet-Moment-/images/IMG-20241217-WA0077.jpg',
+                        title: 'מגדל מקרונים',
+                        description: 'מגדל מקרונים מעוצב לאירועים'
+                    }
+                ]
             },
-            {
-                image: '/Sweet-Moment-/images/IMG-20241217-WA0077.jpg', // נתיב מלא
-                title: 'מגדל מקרונים',
-                description: 'מגדל מקרונים מעוצב לאירועים'
+            'bento': {
+                title: 'בנטו',
+                items: [
+                    {
+                        image: '/Sweet-Moment-/images/bento.jpg',
+                        title: 'עוגת בנטו אישית',
+                        description: 'עוגת בנטו מעוצבת אישית לפי בחירה'
+                    },
+                    {
+                        image: '/Sweet-Moment-/images/Bento and cupcakes.jpg',
+                        title: 'מארז בנטו',
+                        description: 'מארז בנטו בהתאמה אישית'
+                    }
+                ]
             }
-        ]
-    },
-    // ... שאר הקטגוריות
-};
-    'bento': {
-        title: 'בנטו',
-        items: [
-            {
-                image: '/Sweet-Moment-/images/images/bento.jpg',
-                title: 'עוגת בנטו אישית',
-                description: 'עוגת בנטו מעוצבת אישית לפי בחירה'
-            },
-            {
-                image: '/Sweet-Moment-/images/Bento and cupcakes.jpg',
-                title: 'מארז בנטו',
-                description: 'מארז בנטו בהתאמה אישית'
-            }
-        ]
-    }
-};
+        };
 
-  function openImage(imageSrc) {
+        function goBack() {
+            window.location.href = '/Sweet-Moment-/cakes.html';
+        }
+
+        function openImage(imagePath) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
+            const baseUrl = 'https://mosheelkiess.github.io';
             modal.style.display = "block";
-            modalImg.src = imageSrc;
+            modalImg.src = baseUrl + imagePath;
 
-            // סגירה בלחיצה על כפתור הסגירה
             const closeButton = document.getElementsByClassName('close-button')[0];
             closeButton.onclick = function() {
                 modal.style.display = "none";
             }
 
-            // סגירה בלחיצה מחוץ לתמונה
             modal.onclick = function(e) {
                 if (e.target === modal) {
                     modal.style.display = "none";
                 }
             }
 
-            // סגירה בלחיצה על ESC
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     modal.style.display = "none";
                 }
             });
         }
-function displayCategory() {
-    const selectedCategory = localStorage.getItem('selectedCategory');
-    const category = categoryData[selectedCategory];
 
-    if (!category) {
-        window.location.href = '/';
-        return;
-    }
+        function displayCategory() {
+            const selectedCategory = localStorage.getItem('selectedCategory');
+            const category = categoryData[selectedCategory];
 
-    document.getElementById('category-title').textContent = category.title;
-    const container = document.getElementById('category-items');
-    
-    // נשתמש בכתובת המלאה של האתר שלך בלי סלאש בסוף
-    const baseUrl = 'https://mosheelkiess.github.io/Sweet-Moment-';
-    
-    container.innerHTML = category.items.map((item) => {
-        // בונים קישור לדף הנוכחי
-        const currentPageUrl = `${baseUrl}/category.html`;
-        
-        // מייצרים טקסט לשיתוף עם קישור לאתר הראשי
-        const shareText = 
+            if (!category) {
+                window.location.href = '/Sweet-Moment-/';
+                return;
+            }
+
+            document.getElementById('category-title').textContent = category.title;
+            const container = document.getElementById('category-items');
+            const baseUrl = 'https://mosheelkiess.github.io';
+            
+            container.innerHTML = category.items.map((item) => {
+                const shareText = 
 `${item.title}
 
 ${item.description}
 
-בקרו באתר שלנו לצפייה במוצרים נוספים:
-${baseUrl}
+לצפייה במוצר באתר שלנו:
+${baseUrl}/Sweet-Moment-/category.html?category=${selectedCategory}
 
 Sweet Moment - הקונדיטוריה שלנו 🧁`;
 
-        return `
-            <div class="cake-card">
-                <div class="cake-image-container">
-                    <img src="${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
-                </div>
-                <div class="cake-content">
-                    <div class="cake-card-title">${item.title}</div>
-                    <div class="cake-card-details">
-                        <p>${item.description}</p>
+                return `
+                    <div class="cake-card">
+                        <div class="cake-image-container">
+                            <img src="${baseUrl}${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
+                        </div>
+                        <div class="cake-content">
+                            <div class="cake-card-title">${item.title}</div>
+                            <div class="cake-card-details">
+                                <p>${item.description}</p>
+                            </div>
+                            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}" 
+                               target="_blank" 
+                               class="whatsapp-link">
+                                <i class="fab fa-whatsapp"></i> שתף בוואטסאפ
+                            </a>
+                        </div>  
                     </div>
-                    <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}" 
-                       target="_blank" 
-                       class="whatsapp-link">
-                        <i class="fab fa-whatsapp"></i> שתף בוואטסאפ
-                    </a>
-                </div>  
-            </div>
-        `;
-    }).join('');
-}
+                `;
+            }).join('');
+        }
 
-// פונקציית פתיחת תמונה במודאל
-function openImage(imagePath) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    modal.style.display = "block";
-    modalImg.src = imagePath; // משתמשים בנתיב התמונה כפי שהוא
-}
-
-window.addEventListener('load', displayCategory);
+        window.addEventListener('load', displayCategory);
     </script>
-    
-    <script src="search bar.js"></script>
 </body>
 </html>
