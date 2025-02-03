@@ -142,10 +142,11 @@
     </main>
     
     <script>
-        function goBack() {
+          function goBack() {
             window.location.href = '/cakes.html';
         }
-     const categoryData = {
+    
+        const categoryData = {
     'macarons': {
         title: 'מקרונים',
         items: [
@@ -179,6 +180,7 @@
         };
 
 
+        
         function openImage(imageSrc) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
@@ -205,14 +207,7 @@
                 }
             });
         }
-       .cake-card {
-    transition: box-shadow 0.3s ease;
-}
-
-.cake-card.highlighted {
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
-              function displayCategory() {
+        function displayCategory() {
     const selectedCategory = localStorage.getItem('selectedCategory');
     const category = categoryData[selectedCategory];
 
