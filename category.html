@@ -106,9 +106,9 @@
 </head>
 <body>
     <header>
-        <div class="logo-container">
-            <img src="images/logo2.jpg" class="logo" alt="Sweet Moment Logo">
-        </div>
+       <div class="logo-container">
+    <img src="/Sweet-Moment-/images/logo2.jpg" class="logo" alt="Sweet Moment Logo">
+</div>
         <nav>
             <ul>
                 <li><a href="index.html">בית</a></li>
@@ -140,47 +140,47 @@
         function goBack() {
             window.location.href = 'cakes.html';
         }
-    
-        const categoryData = {
+    const categoryData = {
     'macarons': {
         title: 'מקרונים',
         items: [
             {
-                image: 'images/aaaa.jpg', // נתיב מלא
+                // שימוש בנתיב מלא כולל שם הריפוזיטורי
+                image: '/Sweet-Moment-/images/aaaa.jpg',
                 title: 'מקרונים מארז ממותג אישית',
                 description: 'מארז מקרונים בטעמים מגוונים עם הקדשה אישית'
             },
             {
-                image: 'images/IMG-20241217-WA0077.jpg', // נתיב מלא
+                image: '/Sweet-Moment-/images/IMG-20241217-WA0077.jpg',
                 title: 'מגדל מקרונים',
                 description: 'מגדל מקרונים מעוצב לאירועים'
             }
         ]
     },
     'bento': {
-                title: 'בנטו',
-                items: [
-                    {
-                        image: 'images/bento.jpg',
-                        title: 'עוגת בנטו אישית',
-                        description: 'עוגת בנטו מעוצבת אישית לפי בחירה'
-                    },
-                    {
-                        image: 'images/Bento and cupcakes.jpg',
-                        title: 'מארז בנטו',
-                        description: 'מארז בנטו בהתאמה אישית'
-                    }
-                ]
+        title: 'בנטו',
+        items: [
+            {
+                image: '/Sweet-Moment-/images/bento.jpg',
+                title: 'עוגת בנטו אישית',
+                description: 'עוגת בנטו מעוצבת אישית לפי בחירה'
+            },
+            {
+                image: '/Sweet-Moment-/images/Bento and cupcakes.jpg',
+                title: 'מארז בנטו',
+                description: 'מארז בנטו בהתאמה אישית'
             }
-        };
+        ]
+    }
+};
 
-
-        
-        function openImage(imageSrc) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = "block";
-            modalImg.src = imageSrc;
+function openImage(imagePath) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = "block";
+    // שימוש בנתיב כפי שהוא, כי כבר כולל את שם הריפוזיטורי
+    modalImg.src = imagePath;
+}
 
             // סגירה בלחיצה על כפתור הסגירה
             const closeButton = document.getElementsByClassName('close-button')[0];
