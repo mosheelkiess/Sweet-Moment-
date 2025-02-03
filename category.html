@@ -201,7 +201,7 @@
             });
         }
     
- function displayCategory() {
+function displayCategory() {
     const selectedCategory = localStorage.getItem('selectedCategory');
     const category = categoryData[selectedCategory];
 
@@ -213,23 +213,23 @@
     document.getElementById('category-title').textContent = category.title;
     const container = document.getElementById('category-items');
     
-    // בניית כתובת האתר הבסיסית
-    const baseUrl = 'https://mosheelkiess.github.io/'; // שים לב לסלאש בסוף
+    // בניית כתובת האתר הבסיסית - שים לב לפורמט המדויק
+    const baseUrl = 'https://mosheelkiess.github.io';
     
     container.innerHTML = category.items.map((item) => {
         // בניית URL מלא לתמונה
-        const fullImageUrl = baseUrl + item.image.replace(/^\//, ''); // מסיר סלאש מתחילת נתיב התמונה אם קיים
+        const fullImageUrl = `${baseUrl}/${item.image.replace(/^\//, '')}`;
         
-        // בניית טקסט לשיתוף בפורמט מסודר
-        const shareText = `
-🎂 ${item.title}
+        // בניית טקסט לשיתוף בפורמט שוואטסאפ יזהה כקישור
+        const shareText = 
+`${item.title}
 
-📝 ${item.description}
+${item.description}
 
-🔗 לצפייה במוצר:
+לצפייה במוצר:
 ${fullImageUrl}
 
-Sweet Moment - הקונדיטוריה שלנו 🧁`;
+Sweet Moment 🧁`;
 
         return `
             <div class="cake-card">
@@ -241,7 +241,8 @@ Sweet Moment - הקונדיטוריה שלנו 🧁`;
                     <div class="cake-card-details">
                         <p>${item.description}</p>
                     </div>
-                    <a href="https://wa.me/?text=${encodeURIComponent(shareText)}" 
+                    <a href="whatsapp://send?text=${encodeURIComponent(shareText)}" 
+                       data-action="share/whatsapp/share"
                        target="_blank" 
                        class="whatsapp-link">
                         <i class="fab fa-whatsapp"></i> שתף בוואטסאפ
@@ -257,15 +258,14 @@ function openImage(imagePath) {
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     
-    // בניית URL מלא לתמונה
-    const baseUrl = 'https://mosheelkiess.github.io/';
-    const fullImageUrl = baseUrl + imagePath.replace(/^\//, '');
+    const baseUrl = 'https://mosheelkiess.github.io';
+    const fullImageUrl = `${baseUrl}/${imagePath.replace(/^\//, '')}`;
     
     modal.style.display = "block";
     modalImg.src = fullImageUrl;
 }
 
-window.addEventListener('load', displayCategory);
+window.addEventListener('load', displayCategory);ד
     </script>
     
     <script src="search bar.js"></script>
