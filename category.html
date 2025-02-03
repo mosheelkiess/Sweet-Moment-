@@ -202,7 +202,7 @@
                 }
             });
         }
-        function displayCategory() {
+function displayCategory() {
     const selectedCategory = localStorage.getItem('selectedCategory');
     const category = categoryData[selectedCategory];
 
@@ -214,28 +214,28 @@
     document.getElementById('category-title').textContent = category.title;
     const container = document.getElementById('category-items');
     
-    // נשתמש בכתובת המלאה של האתר שלך בלי סלאש בסוף
-    const baseUrl = 'https://mosheelkiess.github.io/Sweet-Moment-';
+    // הכתובת המדויקת של האתר שלך
+    const baseUrl = 'https://mosheelkiess.github.io/Sweet-Moment-'; // שים לב לסימן - בסוף
     
     container.innerHTML = category.items.map((item) => {
-        // בונים קישור לדף הנוכחי
-        const currentPageUrl = `${baseUrl}/category.html`;
+        // בניית URL מלא לדף הקטגוריה
+        const categoryUrl = `${baseUrl}/category.html?category=${selectedCategory}`;
         
-        // מייצרים טקסט לשיתוף עם קישור לאתר הראשי
+        // בניית טקסט לשיתוף
         const shareText = 
 `${item.title}
 
 ${item.description}
 
-בקרו באתר שלנו לצפייה במוצרים נוספים:
-${baseUrl}
+לצפייה במוצר באתר שלנו:
+${categoryUrl}
 
 Sweet Moment - הקונדיטוריה שלנו 🧁`;
 
         return `
             <div class="cake-card">
                 <div class="cake-image-container">
-                    <img src="${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
+                    <img src="${baseUrl}/${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
                 </div>
                 <div class="cake-content">
                     <div class="cake-card-title">${item.title}</div>
@@ -257,8 +257,17 @@ Sweet Moment - הקונדיטוריה שלנו 🧁`;
 function openImage(imagePath) {
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
+    
+    const baseUrl = 'https://mosheelkiess.github.io/Sweet-Moment-';
+    const fullImageUrl = `${baseUrl}/${imagePath}`;
+    
     modal.style.display = "block";
-    modalImg.src = imagePath; // משתמשים בנתיב התמונה כפי שהוא
+    modalImg.src = fullImageUrl;
+}
+
+// עדכון פונקציית החזרה
+function goBack() {
+    window.location.href = '/Sweet-Moment-/cakes.html';
 }
 
 window.addEventListener('load', displayCategory);
