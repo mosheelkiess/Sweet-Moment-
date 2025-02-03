@@ -3,42 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/category-style.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/category-style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <title>Sweet Moment - קטגוריית מוצרים</title>
+    <style>
+        .cake-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .cake-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 15px;
+        }
+
+        .cake-card-title {
+            margin-bottom: 10px;
+        }
+
+        .cake-card-details {
+            flex: 1;
+        }
+
+        .whatsapp-link {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-flex;
+            align-items: center;
+            background-color: #25D366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .whatsapp-link i {
+            margin-left: 8px;
+        }
+
+        .whatsapp-link:hover {
+            background-color: #128C7E;
+        }
+
+        .cake-image-container {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .cake-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close-button {
+            position: absolute;
+            right: 35px;
+            top: 15px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            color: #bbb;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="logo-container">
-            <img src="images/logo2.jpg" class="logo" alt="Sweet Moment Logo">
+            <img src="/images/logo2.jpg" class="logo" alt="Sweet Moment Logo">
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">בית</a></li>
-                <li><a href="cakes.html">העוגות שלנו</a></li>
-                <li><a href="workshops.html">הסדנאות שלנו</a></li>
-                <li><a href="base.html">צור קשר</a></li>
-                <li><a href="A_little_about_us.html">הסיפור שלנו</a></li>
+                <li><a href="/">בית</a></li>
+                <li><a href="/cakes.html">העוגות שלנו</a></li>
+                <li><a href="/workshops.html">הסדנאות שלנו</a></li>
+                <li><a href="/base.html">צור קשר</a></li>
+                <li><a href="/A_little_about_us.html">הסיפור שלנו</a></li>
             </ul>
         </nav>
     </header>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-button">&times;</span>
+        <img id="modalImage" class="modal-content">
+    </div>
 
     <main class="main-content">
         <a href="javascript:void(0)" onclick="goBack()" class="back-button">חזרה לדף העוגות שלנו</a>
         <section class="category-section">
             <h1 id="category-title">טוען קטגוריה...</h1>
             <div class="cake-grid" id="category-items">
-                <!-- התוכן ייטען דינאמית -->
+                <!-- התוכן יוכנס דינמית -->
             </div>
         </section>
     </main>
     
     <script>
         function goBack() {
-            window.location.href = 'cakes.html';
+            window.location.href = '/cakes.html';
         }
-
+    
         const categoryData = {
             'macarons': {
                 title: 'מקרונים',
@@ -72,21 +174,46 @@
             }
         };
 
-        function displayCategory() {
-            const selectedCategory = localStorage.getItem('selectedCategory');
-            console.log("קטגוריה נבחרה:", selectedCategory); // בדיקה בקונסולה
+        function openImage(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = "block";
+            modalImg.src = imageSrc;
 
-            if (!selectedCategory || !categoryData[selectedCategory]) {
-                console.error("קטגוריה לא נמצאה. מעבר לדף הבית.");
-                window.location.href = 'index.html';
-                return;
+            // סגירה בלחיצה על כפתור הסגירה
+            const closeButton = document.getElementsByClassName('close-button')[0];
+            closeButton.onclick = function() {
+                modal.style.display = "none";
             }
 
-            const category = categoryData[selectedCategory];
-            document.getElementById('category-title').textContent = category.title;
+            // סגירה בלחיצה מחוץ לתמונה
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
 
+            // סגירה בלחיצה על ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    modal.style.display = "none";
+                }
+            });
+        }
+    
+        function displayCategory() {
+            const selectedCategory = localStorage.getItem('selectedCategory');
+            const category = categoryData[selectedCategory];
+    
+            if (!category) {
+                window.location.href = '/';
+                return;
+            }
+    
+            document.getElementById('category-title').textContent = category.title;
             const container = document.getElementById('category-items');
-            container.innerHTML = category.items.map(item => `
+            
+            container.innerHTML = category.items.map((item) => `
                 <div class="cake-card">
                     <div class="cake-image-container">
                         <img src="${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
@@ -96,7 +223,7 @@
                         <div class="cake-card-details">
                             <p>${item.description}</p>
                         </div>
-                        <a href="https://wa.me/?text=${encodeURIComponent(`${item.title}%0A%0A${item.description}%0A%0A${window.location.origin}/${item.image}`)}" 
+                        <a href="https://wa.me/?text=${encodeURIComponent(`${item.title}%0A%0A${item.description}%0A%0A${window.location.origin}${item.image}`)}" 
                            target="_blank" 
                            class="whatsapp-link">
                             <i class="fab fa-whatsapp"></i> שתף בוואטסאפ
@@ -105,13 +232,10 @@
                 </div>
             `).join('');
         }
-
-        function openImage(imageSrc) {
-            window.open(imageSrc, '_blank');
-        }
-
+    
         window.addEventListener('load', displayCategory);
     </script>
-
+    
+    <script src="/js/search bar.js"></script>
 </body>
 </html>
