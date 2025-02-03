@@ -201,7 +201,7 @@
             });
         }
     
-       function displayCategory() {
+   function displayCategory() {
     const selectedCategory = localStorage.getItem('selectedCategory');
     const category = categoryData[selectedCategory];
 
@@ -213,21 +213,23 @@
     document.getElementById('category-title').textContent = category.title;
     const container = document.getElementById('category-items');
     
-    // מקבל את כתובת האתר המלאה
-    const baseUrl = window.location.origin;
+    // בניית כתובת האתר הבסיסית
+    const baseUrl = 'https://mosheelkiess.github.io/'; // שים לב לסלאש בסוף
     
     container.innerHTML = category.items.map((item) => {
         // בניית URL מלא לתמונה
-        const fullImageUrl = new URL(item.image, baseUrl).href;
+        const fullImageUrl = baseUrl + item.image.replace(/^\//, ''); // מסיר סלאש מתחילת נתיב התמונה אם קיים
         
-        // בניית טקסט לשיתוף
+        // בניית טקסט לשיתוף בפורמט מסודר
         const shareText = `
-${item.title}
+🎂 ${item.title}
 
-${item.description}
+📝 ${item.description}
 
-לצפייה במוצר: ${fullImageUrl}
-        `.trim();
+🔗 לצפייה במוצר:
+${fullImageUrl}
+
+Sweet Moment - הקונדיטוריה שלנו 🧁`;
 
         return `
             <div class="cake-card">
@@ -256,7 +258,8 @@ function openImage(imagePath) {
     const modalImg = document.getElementById('modalImage');
     
     // בניית URL מלא לתמונה
-    const fullImageUrl = new URL(imagePath, window.location.origin).href;
+    const baseUrl = 'https://mosheelkiess.github.io/';
+    const fullImageUrl = baseUrl + imagePath.replace(/^\//, '');
     
     modal.style.display = "block";
     modalImg.src = fullImageUrl;
