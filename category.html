@@ -174,13 +174,11 @@
     }
 };
 
-function openImage(imagePath) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    modal.style.display = "block";
-    // שימוש בנתיב כפי שהוא, כי כבר כולל את שם הריפוזיטורי
-    modalImg.src = imagePath;
-}
+  function openImage(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = "block";
+            modalImg.src = imageSrc;
 
             // סגירה בלחיצה על כפתור הסגירה
             const closeButton = document.getElementsByClassName('close-button')[0];
