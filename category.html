@@ -201,39 +201,68 @@
             });
         }
     
-        function displayCategory() {
-            const selectedCategory = localStorage.getItem('selectedCategory');
-            const category = categoryData[selectedCategory];
+       function displayCategory() {
+    const selectedCategory = localStorage.getItem('selectedCategory');
+    const category = categoryData[selectedCategory];
+
+    if (!category) {
+        window.location.href = '/';
+        return;
+    }
+
+    document.getElementById('category-title').textContent = category.title;
+    const container = document.getElementById('category-items');
     
-            if (!category) {
-                window.location.href = '/';
-                return;
-            }
+    // מקבל את כתובת האתר המלאה
+    const baseUrl = window.location.origin;
     
-            document.getElementById('category-title').textContent = category.title;
-            const container = document.getElementById('category-items');
-            
-            container.innerHTML = category.items.map((item) => `
-                <div class="cake-card">
-                    <div class="cake-image-container">
-                        <img src="${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
-                    </div>
-                    <div class="cake-content">
-                        <div class="cake-card-title">${item.title}</div>
-                        <div class="cake-card-details">
-                            <p>${item.description}</p>
-                        </div>
-                        <a href="https://wa.me/?text=${encodeURIComponent(`${item.title}%0A%0A${item.description}%0A%0A${window.location.origin}${item.image}`)}" 
-                           target="_blank" 
-                           class="whatsapp-link">
-                            <i class="fab fa-whatsapp"></i> שתף בוואטסאפ
-                        </a>
-                    </div>  
+    container.innerHTML = category.items.map((item) => {
+        // בניית URL מלא לתמונה
+        const fullImageUrl = new URL(item.image, baseUrl).href;
+        
+        // בניית טקסט לשיתוף
+        const shareText = `
+${item.title}
+
+${item.description}
+
+לצפייה במוצר: ${fullImageUrl}
+        `.trim();
+
+        return `
+            <div class="cake-card">
+                <div class="cake-image-container">
+                    <img src="${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
                 </div>
-            `).join('');
-        }
+                <div class="cake-content">
+                    <div class="cake-card-title">${item.title}</div>
+                    <div class="cake-card-details">
+                        <p>${item.description}</p>
+                    </div>
+                    <a href="https://wa.me/?text=${encodeURIComponent(shareText)}" 
+                       target="_blank" 
+                       class="whatsapp-link">
+                        <i class="fab fa-whatsapp"></i> שתף בוואטסאפ
+                    </a>
+                </div>  
+            </div>
+        `;
+    }).join('');
+}
+
+// פונקציה לפתיחת תמונה במודאל
+function openImage(imagePath) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
     
-        window.addEventListener('load', displayCategory);
+    // בניית URL מלא לתמונה
+    const fullImageUrl = new URL(imagePath, window.location.origin).href;
+    
+    modal.style.display = "block";
+    modalImg.src = fullImageUrl;
+}
+
+window.addEventListener('load', displayCategory);
     </script>
     
     <script src="search bar.js"></script>
