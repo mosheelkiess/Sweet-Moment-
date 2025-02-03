@@ -140,38 +140,38 @@
         function goBack() {
             window.location.href = 'cakes.html';
         }
-const categoryData = {
+ const categoryData = {
     'macarons': {
         title: 'מקרונים',
         items: [
             {
-                image: './images/aaaa.jpg', // שימוש בנתיב יחסי עם ./
+                image: 'images/aaaa.jpg', // נתיב מלא
                 title: 'מקרונים מארז ממותג אישית',
                 description: 'מארז מקרונים בטעמים מגוונים עם הקדשה אישית'
             },
             {
-                image: './images/IMG-20241217-WA0077.jpg', // שימוש בנתיב יחסי עם ./
+                image: 'images/IMG-20241217-WA0077.jpg', // נתיב מלא
                 title: 'מגדל מקרונים',
                 description: 'מגדל מקרונים מעוצב לאירועים'
             }
         ]
     },
     'bento': {
-        title: 'בנטו',
-        items: [
-            {
-                image: './images/bento.jpg', // שימוש בנתיב יחסי עם ./
-                title: 'עוגת בנטו אישית',
-                description: 'עוגת בנטו מעוצבת אישית לפי בחירה'
-            },
-            {
-                image: './images/Bento and cupcakes.jpg', // שימוש בנתיב יחסי עם ./
-                title: 'מארז בנטו',
-                description: 'מארז בנטו בהתאמה אישית'
+                title: 'בנטו',
+                items: [
+                    {
+                        image: 'images/bento.jpg',
+                        title: 'עוגת בנטו אישית',
+                        description: 'עוגת בנטו מעוצבת אישית לפי בחירה'
+                    },
+                    {
+                        image: 'images/Bento and cupcakes.jpg',
+                        title: 'מארז בנטו',
+                        description: 'מארז בנטו בהתאמה אישית'
+                    }
+                ]
             }
-        ]
-    }
-};
+        };
 
   function openImage(imageSrc) {
             const modal = document.getElementById('imageModal');
