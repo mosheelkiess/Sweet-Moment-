@@ -110,13 +110,15 @@
     <img src="/Sweet-Moment-/images/logo2.jpg" class="logo" alt="Sweet Moment Logo">
 </div>
         <nav>
-            <ul>
-                <li><a href="index.html">בית</a></li>
-                <li><a href="cakes.html">העוגות שלנו</a></li>
-                <li><a href="workshops.html">הסדנאות שלנו</a></li>
-                <li><a href="base.html">צור קשר</a></li>
-                <li><a href="A_little_about_us.html">הסיפור שלנו</a></li>
-            </ul>
+<nav>
+    <ul>
+        <li><a href="/Sweet-Moment-/index.html">בית</a></li>
+        <li><a href="/Sweet-Moment-/cakes.html">העוגות שלנו</a></li>
+        <li><a href="/Sweet-Moment-/workshops.html">הסדנאות שלנו</a></li>
+        <li><a href="/Sweet-Moment-/base.html">צור קשר</a></li>
+        <li><a href="/Sweet-Moment-/A_little_about_us.html">הסיפור שלנו</a></li>
+    </ul>
+</nav>
         </nav>
     </header>
 
@@ -137,21 +139,20 @@
     </main>
     
     <script>
-        function goBack() {
-            window.location.href = 'cakes.html';
-        }
+      function goBack() {
+    window.location.href = '/Sweet-Moment-/cakes.html';
+}
     const categoryData = {
     'macarons': {
         title: 'מקרונים',
         items: [
             {
-                // שימוש בנתיב מלא כולל שם הריפוזיטורי
-                image: '/Sweet-Moment-/images/aaaa.jpg',
+                image: 'https://mosheelkiess.github.io/Sweet-Moment-/images/aaaa.jpg',
                 title: 'מקרונים מארז ממותג אישית',
                 description: 'מארז מקרונים בטעמים מגוונים עם הקדשה אישית'
             },
             {
-                image: '/Sweet-Moment-/images/IMG-20241217-WA0077.jpg',
+                image: 'https://mosheelkiess.github.io/Sweet-Moment-/images/IMG-20241217-WA0077.jpg',
                 title: 'מגדל מקרונים',
                 description: 'מגדל מקרונים מעוצב לאירועים'
             }
@@ -161,12 +162,12 @@
         title: 'בנטו',
         items: [
             {
-                image: '/Sweet-Moment-/images/bento.jpg',
+                image: 'https://mosheelkiess.github.io/Sweet-Moment-/images/bento.jpg',
                 title: 'עוגת בנטו אישית',
                 description: 'עוגת בנטו מעוצבת אישית לפי בחירה'
             },
             {
-                image: '/Sweet-Moment-/images/Bento and cupcakes.jpg',
+                image: 'https://mosheelkiess.github.io/Sweet-Moment-/images/Bento and cupcakes.jpg',
                 title: 'מארז בנטו',
                 description: 'מארז בנטו בהתאמה אישית'
             }
@@ -174,11 +175,12 @@
     }
 };
 
-  function openImage(imageSrc) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = "block";
-            modalImg.src = imageSrc;
+function openImage(imagePath) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = "block";
+    modalImg.src = imagePath; // משתמשים בנתיב המלא שכבר קיים
+}
 
             // סגירה בלחיצה על כפתור הסגירה
             const closeButton = document.getElementsByClassName('close-button')[0];
@@ -212,28 +214,25 @@ function displayCategory() {
     document.getElementById('category-title').textContent = category.title;
     const container = document.getElementById('category-items');
     
-    // הכתובת המדויקת של האתר שלך
-    const baseUrl = 'https://mosheelkiess.github.io/Sweet-Moment-/category.html'; 
+    // שינוי הכתובת הבסיסית - הסרת category.html מהסוף
+    const baseUrl = 'https://mosheelkiess.github.io/Sweet-Moment-';
     
     container.innerHTML = category.items.map((item) => {
-        // בניית URL מלא לדף הקטגוריה
-        const categoryUrl = `${baseUrl}/category.html?category=${selectedCategory}`;
-        
-        // בניית טקסט לשיתוף
+        // בניית טקסט לשיתוף עם הקישור הנכון
         const shareText = 
 `${item.title}
 
 ${item.description}
 
 לצפייה במוצר באתר שלנו:
-${categoryUrl}
+${baseUrl}/category.html?category=${selectedCategory}
 
 Sweet Moment - הקונדיטוריה שלנו 🧁`;
 
         return `
             <div class="cake-card">
                 <div class="cake-image-container">
-                    <img src="${baseUrl}/${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
+                    <img src="${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
                 </div>
                 <div class="cake-content">
                     <div class="cake-card-title">${item.title}</div>
