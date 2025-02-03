@@ -213,21 +213,21 @@ function displayCategory() {
     document.getElementById('category-title').textContent = category.title;
     const container = document.getElementById('category-items');
     
-    // בניית כתובת האתר הבסיסית - שים לב לשם הריפוזיטורי
-    const baseUrl = 'https://mosheelkiess.github.io/Sweet-Moment'; // הוספת שם הריפוזיטורי
+    // בדוק מה הכתובת הנכונה של האתר שלך
+    const baseUrl = 'https://mosheelkiess.github.io'; // ללא שם ריפוזיטורי בסוף
     
     container.innerHTML = category.items.map((item) => {
-        // בניית URL מלא לתמונה
-        const fullImageUrl = `${baseUrl}/${item.image.replace(/^\//, '')}`;
+        // בניית URL מלא לתמונה - מוסיף את שם הריפוזיטורי אם צריך
+        const fullImageUrl = `${baseUrl}${item.image}`;
         
-        // בניית טקסט לשיתוף בפורמט שוואטסאפ יזהה כקישור
+        // בניית טקסט לשיתוף
         const shareText = 
 `${item.title}
 
 ${item.description}
 
 לצפייה במוצר באתר שלנו:
-${fullImageUrl}
+${baseUrl}
 
 Sweet Moment - הקונדיטוריה שלנו 🧁`;
 
@@ -257,14 +257,12 @@ function openImage(imagePath) {
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     
-    const baseUrl = 'https://mosheelkiess.github.io/Sweet-Moment';
-    const fullImageUrl = `${baseUrl}/${imagePath.replace(/^\//, '')}`;
+    const baseUrl = 'https://mosheelkiess.github.io';
+    const fullImageUrl = `${baseUrl}${imagePath}`;
     
     modal.style.display = "block";
     modalImg.src = fullImageUrl;
 }
-
-window.addEventListener('load', displayCategory);
     </script>
     
     <script src="search bar.js"></script>
