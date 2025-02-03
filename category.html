@@ -212,6 +212,66 @@
 .cake-card.highlighted {
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
+              function displayCategory() {
+    const selectedCategory = localStorage.getItem('selectedCategory');
+    const category = categoryData[selectedCategory];
+
+    if (!category) {
+        window.location.href = '/';
+        return;
+    }
+
+    document.getElementById('category-title').textContent = category.title;
+    const container = document.getElementById('category-items');
+    
+    // נשתמש בכתובת המלאה של האתר שלך בלי סלאש בסוף
+    const baseUrl = 'https://mosheelkiess.github.io/Sweet-Moment-';
+    
+    container.innerHTML = category.items.map((item) => {
+        // בונים קישור לדף הנוכחי
+        const currentPageUrl = `${baseUrl}/category.html`;
+        
+        // מייצרים טקסט לשיתוף עם קישור לאתר הראשי
+        const shareText = 
+`${item.title}
+
+${item.description}
+
+בקרו באתר שלנו לצפייה במוצרים נוספים:
+${baseUrl}
+
+Sweet Moment - הקונדיטוריה שלנו 🧁`;
+
+        return `
+            <div class="cake-card">
+                <div class="cake-image-container">
+                    <img src="${item.image}" alt="${item.title}" onclick="openImage('${item.image}')">
+                </div>
+                <div class="cake-content">
+                    <div class="cake-card-title">${item.title}</div>
+                    <div class="cake-card-details">
+                        <p>${item.description}</p>
+                    </div>
+                    <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}" 
+                       target="_blank" 
+                       class="whatsapp-link">
+                        <i class="fab fa-whatsapp"></i> שתף בוואטסאפ
+                    </a>
+                </div>  
+            </div>
+        `;
+    }).join('');
+}
+
+// פונקציית פתיחת תמונה במודאל
+function openImage(imagePath) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = "block";
+    modalImg.src = imagePath; // משתמשים בנתיב התמונה כפי שהוא
+}
+
+window.addEventListener('load', displayCategory);
     </script>
     
     <script src="search bar.js"></script>
