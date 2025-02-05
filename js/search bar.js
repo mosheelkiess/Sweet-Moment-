@@ -140,3 +140,76 @@ window.onerror = function(msg, url, lineNo, columnNo, error) {
 window.addEventListener('unhandledrejection', function(event) {
     console.error('Unhandled promise rejection:', event.reason);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+// תפריט המבורגר
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('nav ul');
+
+hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+});
+
+// סגירת תפריט בלחיצה מחוץ
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('nav') && !e.target.closest('.hamburger')) {
+        nav.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    }
+});
+
+// חיפוש
+const searchInput = document.getElementById('search-input');
+const searchIcon = document.querySelector('.search-icon');
+
+searchIcon.addEventListener('click', () => {
+    searchInput.classList.toggle('active');
+    if (searchInput.classList.contains('active')) {
+        searchInput.focus();
+    }
+});
+
+// טעינת תמונות בצורה לייזי
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                observer.unobserve(img);
+            }
+        });
+    });
+
+    images.forEach(img => imageObserver.observe(img));
+});
+
+// אנימציות בגלילה
+const animateOnScroll = () => {
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementTop < windowHeight - 100) {
+            element.classList.add('animated');
+        }
+    });
+};
+
+window.addEventListener('scroll', animateOnScroll);
