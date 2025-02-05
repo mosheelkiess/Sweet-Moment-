@@ -151,31 +151,39 @@ window.addEventListener('unhandledrejection', function(event) {
 
 
 
-// תפריט המבורגר
-const hamburger = document.querySelector('.hamburger');
-const nav = document.querySelector('nav ul');
-const body = document.body;
-
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    nav.classList.toggle('active');
-    body.classList.toggle('menu-open');
-});
-
-// סגירת תפריט בלחיצה על קישור
-nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        nav.classList.remove('active');
-        body.classList.remove('menu-open');
-    });
-});
-
-// סגירת תפריט בלחיצה מחוץ
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('nav') && !e.target.closest('.hamburger')) {
-        hamburger.classList.remove('active');
-        nav.classList.remove('active');
-        body.classList.remove('menu-open');
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    // מוודא שהאלמנטים קיימים
+    if (!hamburger || !navMenu) {
+        console.error('Missing hamburger or nav menu elements');
+        return;
     }
+
+    // פונקציה להחלפת מצב התפריט
+    function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        console.log('Menu toggled'); // בדיקה
+    }
+
+    // מאזין לכפתור ההמבורגר
+    hamburger.addEventListener('click', toggleMenu);
+
+    // סגירת התפריט בלחיצה על קישור
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // סגירת התפריט בלחיצה מחוץ לתפריט
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
 });
