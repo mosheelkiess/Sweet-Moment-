@@ -1408,8 +1408,23 @@ footer p {
 
 
 
+/* עיצוב בסיסי להדר */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, #2c2c2c, #111);
+}
+
+/* עיצוב כפתור ההמבורגר */
 .hamburger {
-    display: none;
+    display: none; /* מוסתר כברירת מחדל */
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
@@ -1419,4 +1434,73 @@ footer p {
     cursor: pointer;
     padding: 0;
     z-index: 1001;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+/* עיצוב התפריט */
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; /* מוצג במובייל */
+    }
+
+    nav ul {
+        position: fixed;
+        top: 80px; /* גובה ההדר */
+        right: -100%; /* מוסתר מחוץ למסך */
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: #2c2c2c;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        transition: right 0.3s ease;
+    }
+
+    nav ul.active {
+        right: 0; /* מציג את התפריט */
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 1rem;
+        width: 100%;
+    }
+
+    /* אנימציה לפסים של ההמבורגר */
+    .hamburger.active span:first-child {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:last-child {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* מונע גלילה כשהתפריט פתוח */
+    body.menu-open {
+        overflow: hidden;
+    }
 }
